@@ -24,7 +24,7 @@ html {
 }
 
 .selected {
-  border: 2px solid var(--yellow) !important;
+  outline: 2px solid var(--yellow) !important;
 }
 
 .not-selected {
@@ -134,7 +134,7 @@ main {
   align-items: center;
   width: 95%;
   max-width: 1200px;
-  gap: 8px;
+  gap: 16px;
   margin-top: 24px;
 }
 
@@ -143,9 +143,9 @@ main {
   object-fit: cover;
   position: relative;
   background-color: var(--color-bg-main);
-  border: 2px solid var(--color-bg-main);
-  outline: 2px solid transparent;
-  border-radius: 4px;
+  outline-offset: 2px;
+  outline: 2px solid var(--color-bg-main);
+  border-radius: 2px;
   cursor: pointer;
   overflow: hidden;
   transition: all 0.3s ease;
