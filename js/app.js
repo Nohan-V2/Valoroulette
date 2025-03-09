@@ -14,6 +14,7 @@ fetch("https://valorant-api.com/v1/agents")
   .then((data) => {
     console.log(data);
 
+    // Loop create agent cards
     data.data.forEach((agent) => {
       let agentImage = agent.displayIcon;
       let table = [];
@@ -35,7 +36,9 @@ fetch("https://valorant-api.com/v1/agents")
         $lockIcon.src = "assets/img/lock.svg"; // Adjust path to where your lock.svg is stored
         $agentCard.appendChild($lockIcon);
 
+        // lock/unlock agent
         $agentCard.addEventListener("click", () => {
+          $agentCard.classList.remove("selected");
           $agentCard.classList.toggle("locked");
         });
 
@@ -43,6 +46,7 @@ fetch("https://valorant-api.com/v1/agents")
         $btnSelectAll.addEventListener("click", () => {
           $agentCard.classList.remove("locked");
           $agentCard.classList.remove("not-selected");
+          $agentCard.classList.remove("selected");
         });
 
         // Select one agent at random
@@ -58,26 +62,33 @@ fetch("https://valorant-api.com/v1/agents")
           // Sélectionner l'agent aléatoire
           const selectedAgent = unlockedAgents[randomIndex];
 
-          // Verrouiller tous les agents
+          // Selectionne tous les agents
           document.querySelectorAll(".agent-card").forEach((agent) => {
             agent.classList.add("not-selected");
+            agent.classList.remove("selected");
           });
 
-          // Déverrouiller uniquement l'agent sélectionné
+          // Déselectionne uniquement l'agent sélectionné
           selectedAgent.classList.remove("not-selected");
+          selectedAgent.classList.add("selected");
         });
 
         // deselect all agents
         $btnDeselectAll.addEventListener("click", () => {
           $agentCard.classList.add("locked");
+          $agentCard.classList.remove("selected");
         });
 
         // Select all duelists
         $duelist.addEventListener("click", () => {
           if (agent.role.displayName === "Duelist") {
             $agentCard.classList.remove("locked");
+            $agentCard.classList.remove("selected");
+            $agentCard.classList.remove("not-selected");
           } else {
             $agentCard.classList.add("locked");
+            $agentCard.classList.remove("selected");
+            $agentCard.classList.remove("not-selected");
           }
         });
 
@@ -85,8 +96,12 @@ fetch("https://valorant-api.com/v1/agents")
         $initiator.addEventListener("click", () => {
           if (agent.role.displayName === "Initiator") {
             $agentCard.classList.remove("locked");
+            $agentCard.classList.remove("selected");
+            $agentCard.classList.remove("not-selected");
           } else {
             $agentCard.classList.add("locked");
+            $agentCard.classList.remove("selected");
+            $agentCard.classList.remove("not-selected");
           }
         });
 
@@ -94,8 +109,12 @@ fetch("https://valorant-api.com/v1/agents")
         $controller.addEventListener("click", () => {
           if (agent.role.displayName === "Controller") {
             $agentCard.classList.remove("locked");
+            $agentCard.classList.remove("selected");
+            $agentCard.classList.remove("not-selected");
           } else {
             $agentCard.classList.add("locked");
+            $agentCard.classList.remove("selected");
+            $agentCard.classList.remove("not-selected");
           }
         });
 
@@ -103,8 +122,12 @@ fetch("https://valorant-api.com/v1/agents")
         $sentinel.addEventListener("click", () => {
           if (agent.role.displayName === "Sentinel") {
             $agentCard.classList.remove("locked");
+            $agentCard.classList.remove("selected");
+            $agentCard.classList.remove("not-selected");
           } else {
             $agentCard.classList.add("locked");
+            $agentCard.classList.remove("selected");
+            $agentCard.classList.remove("not-selected");
           }
         });
       }

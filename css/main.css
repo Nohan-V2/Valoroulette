@@ -16,17 +16,23 @@ html {
 }
 
 :root {
+  --black: #0b1114;
   --white: #fff;
   --color-bg-main: rgba(255, 255, 255, 0.15);
   --red: #ff4655;
+  --yellow: #eaeeb2;
+}
+
+.selected {
+  border: 2px solid var(--yellow) !important;
 }
 
 .not-selected {
-  opacity: 0.5;
+  opacity: 0.5 !important;
 }
 
 .locked {
-  opacity: 0.3;
+  opacity: 0.3 !important;
 }
 
 h1 {
@@ -40,8 +46,8 @@ h1 {
 }
 
 body {
-  position: relative;
-  overflow: hidden;
+  padding: 5rem 0;
+  background-color: var(--black);
   min-height: 100vh;
 }
 
@@ -56,10 +62,6 @@ video {
 }
 
 main {
-  position: absolute;
-  translate: -50% -50%;
-  top: 50%;
-  left: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -104,7 +106,8 @@ main {
 .roles-wrapper {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 8px;
   align-items: center;
   margin-top: 40px;
 }
@@ -129,7 +132,8 @@ main {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  width: 1200px;
+  width: 95%;
+  max-width: 1200px;
   gap: 8px;
   margin-top: 24px;
 }
@@ -139,7 +143,8 @@ main {
   object-fit: cover;
   position: relative;
   background-color: var(--color-bg-main);
-  padding: 4px;
+  border: 2px solid var(--color-bg-main);
+  outline: 2px solid transparent;
   border-radius: 4px;
   cursor: pointer;
   overflow: hidden;
@@ -168,4 +173,29 @@ main {
 
 .agent-card.locked .lock-icon {
   display: block;
+}
+
+@media only screen and (max-width: 992px) {
+  h1 {
+    font-size: 80px;
+  }
+
+  .actions-buttons {
+    padding: 1.2rem 2rem;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  h1 {
+    font-size: 60px;
+  }
+
+  .btn-wrapper {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .actions-buttons {
+    width: 70%;
+  }
 }
