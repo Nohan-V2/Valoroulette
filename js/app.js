@@ -9,6 +9,9 @@ const $sentinel = document.querySelector(".sentinel");
 
 const $namePersonSelected = document.querySelector(".name-person-selected");
 const $agentsList = document.querySelector(".agents-list");
+const $messageAllAgentsLocked = document.querySelector(
+  ".message-all-agents-locked"
+);
 
 fetch("https://valorant-api.com/v1/agents")
   .then((response) => response.json())
@@ -38,15 +41,30 @@ fetch("https://valorant-api.com/v1/agents")
         $lockIcon.src = "assets/img/lock.svg"; // Adjust path to where your lock.svg is stored
         $agentCard.appendChild($lockIcon);
 
+        const checkAllAgentsLocked = () => {
+          const allAgents = document.querySelectorAll(".agent-card");
+          const allLocked = Array.from(allAgents).every((agent) =>
+            agent.classList.contains("locked")
+          );
+
+          if (allLocked) {
+            $messageAllAgentsLocked.classList.remove("hidden");
+          } else {
+            $messageAllAgentsLocked.classList.add("hidden");
+          }
+        };
+
         // lock/unlock agent
         $agentCard.addEventListener("click", () => {
           document.querySelectorAll(".agent-card").forEach((agent) => {
             agent.classList.remove("selected");
             agent.classList.remove("not-selected");
           });
+
           $agentCard.classList.toggle("locked");
           $namePersonSelected.textContent = "Null";
           $namePersonSelected.classList.add("invisible");
+          checkAllAgentsLocked();
         });
 
         // Select all agents
@@ -56,6 +74,7 @@ fetch("https://valorant-api.com/v1/agents")
           $agentCard.classList.remove("selected");
           $namePersonSelected.textContent = "Null";
           $namePersonSelected.classList.add("invisible");
+          checkAllAgentsLocked();
         });
 
         // Select one agent at random
@@ -93,6 +112,7 @@ fetch("https://valorant-api.com/v1/agents")
           $agentCard.classList.remove("selected");
           $namePersonSelected.textContent = "Null";
           $namePersonSelected.classList.add("invisible");
+          checkAllAgentsLocked();
         });
 
         // Select all duelists
@@ -101,10 +121,16 @@ fetch("https://valorant-api.com/v1/agents")
             $agentCard.classList.remove("locked");
             $agentCard.classList.remove("selected");
             $agentCard.classList.remove("not-selected");
+            $namePersonSelected.textContent = "Null";
+            $namePersonSelected.classList.add("invisible");
+            checkAllAgentsLocked();
           } else {
             $agentCard.classList.add("locked");
             $agentCard.classList.remove("selected");
             $agentCard.classList.remove("not-selected");
+            $namePersonSelected.textContent = "Null";
+            $namePersonSelected.classList.add("invisible");
+            checkAllAgentsLocked();
           }
         });
 
@@ -114,10 +140,16 @@ fetch("https://valorant-api.com/v1/agents")
             $agentCard.classList.remove("locked");
             $agentCard.classList.remove("selected");
             $agentCard.classList.remove("not-selected");
+            $namePersonSelected.textContent = "Null";
+            $namePersonSelected.classList.add("invisible");
+            checkAllAgentsLocked();
           } else {
             $agentCard.classList.add("locked");
             $agentCard.classList.remove("selected");
             $agentCard.classList.remove("not-selected");
+            $namePersonSelected.textContent = "Null";
+            $namePersonSelected.classList.add("invisible");
+            checkAllAgentsLocked();
           }
         });
 
@@ -127,10 +159,16 @@ fetch("https://valorant-api.com/v1/agents")
             $agentCard.classList.remove("locked");
             $agentCard.classList.remove("selected");
             $agentCard.classList.remove("not-selected");
+            $namePersonSelected.textContent = "Null";
+            $namePersonSelected.classList.add("invisible");
+            checkAllAgentsLocked();
           } else {
             $agentCard.classList.add("locked");
             $agentCard.classList.remove("selected");
             $agentCard.classList.remove("not-selected");
+            $namePersonSelected.textContent = "Null";
+            $namePersonSelected.classList.add("invisible");
+            checkAllAgentsLocked();
           }
         });
 
@@ -140,10 +178,16 @@ fetch("https://valorant-api.com/v1/agents")
             $agentCard.classList.remove("locked");
             $agentCard.classList.remove("selected");
             $agentCard.classList.remove("not-selected");
+            $namePersonSelected.textContent = "Null";
+            $namePersonSelected.classList.add("invisible");
+            checkAllAgentsLocked();
           } else {
             $agentCard.classList.add("locked");
             $agentCard.classList.remove("selected");
             $agentCard.classList.remove("not-selected");
+            $namePersonSelected.textContent = "Null";
+            $namePersonSelected.classList.add("invisible");
+            checkAllAgentsLocked();
           }
         });
       }

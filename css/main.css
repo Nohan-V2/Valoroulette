@@ -27,8 +27,12 @@ html {
   --yellow: #eaeeb2;
 }
 
+.hidden {
+  display: none !important;
+}
+
 .invisible {
-  visibility: hidden;
+  visibility: hidden !important;
 }
 
 .selected {
@@ -76,6 +80,15 @@ video {
   height: 100%;
   object-fit: cover;
   z-index: -1;
+}
+
+.message-all-agents-locked {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: var(--red);
 }
 
 main {
