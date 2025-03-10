@@ -4,10 +4,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 400;
+  line-height: auto;
+  text-transform: uppercase;
+  letter-spacing: 0;
   color: var(--white);
   list-style: none;
+  font-family: "Anton", sans-serif;
 }
 
 html {
@@ -23,6 +27,10 @@ html {
   --yellow: #eaeeb2;
 }
 
+.invisible {
+  visibility: hidden;
+}
+
 .selected {
   outline: 2px solid var(--yellow) !important;
 }
@@ -36,17 +44,26 @@ html {
 }
 
 h1 {
-  font-family: "Anton", sans-serif;
   text-transform: uppercase;
-  font-size: 100px;
+  font-size: 90px;
   letter-spacing: 0;
   line-height: auto;
   font-weight: 900;
   margin: 0;
 }
 
+.name-person-selected {
+  font-size: 60px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  line-height: auto;
+  margin: 20px 0 0 0;
+  color: var(--yellow);
+}
+
 body {
-  padding: 5rem 0;
+  padding: 1.6rem 0;
   background-color: var(--black);
   min-height: 100vh;
 }
@@ -89,7 +106,7 @@ main {
 .actions-buttons {
   background-color: var(--color-bg-main);
   border-radius: 4px;
-  padding: 1.5rem 5rem;
+  padding: 1.2rem 4rem;
   text-transform: uppercase;
   cursor: pointer;
   transition: all 0.3s ease;

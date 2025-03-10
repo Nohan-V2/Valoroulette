@@ -7,6 +7,7 @@ const $initiator = document.querySelector(".initiator");
 const $controller = document.querySelector(".controller");
 const $sentinel = document.querySelector(".sentinel");
 
+const $namePersonSelected = document.querySelector(".name-person-selected");
 const $agentsList = document.querySelector(".agents-list");
 
 fetch("https://valorant-api.com/v1/agents")
@@ -28,6 +29,7 @@ fetch("https://valorant-api.com/v1/agents")
 
         const $agentImg = document.createElement("img");
         $agentImg.classList.add("agent-img");
+        $agentImg.alt = agent.displayName;
         $agentImg.src = agentImage;
         $agentCard.appendChild($agentImg);
 
@@ -38,8 +40,13 @@ fetch("https://valorant-api.com/v1/agents")
 
         // lock/unlock agent
         $agentCard.addEventListener("click", () => {
-          $agentCard.classList.remove("selected");
+          document.querySelectorAll(".agent-card").forEach((agent) => {
+            agent.classList.remove("selected");
+            agent.classList.remove("not-selected");
+          });
           $agentCard.classList.toggle("locked");
+          $namePersonSelected.textContent = "Null";
+          $namePersonSelected.classList.add("invisible");
         });
 
         // Select all agents
@@ -47,6 +54,8 @@ fetch("https://valorant-api.com/v1/agents")
           $agentCard.classList.remove("locked");
           $agentCard.classList.remove("not-selected");
           $agentCard.classList.remove("selected");
+          $namePersonSelected.textContent = "Null";
+          $namePersonSelected.classList.add("invisible");
         });
 
         // Select one agent at random
@@ -71,12 +80,19 @@ fetch("https://valorant-api.com/v1/agents")
           // Déselectionne uniquement l'agent sélectionné
           selectedAgent.classList.remove("not-selected");
           selectedAgent.classList.add("selected");
+
+          // Afficher le nom de l'agent sélectionné
+          $namePersonSelected.textContent =
+            selectedAgent.querySelector(".agent-img").alt;
+          $namePersonSelected.classList.remove("invisible");
         });
 
         // deselect all agents
         $btnDeselectAll.addEventListener("click", () => {
           $agentCard.classList.add("locked");
           $agentCard.classList.remove("selected");
+          $namePersonSelected.textContent = "Null";
+          $namePersonSelected.classList.add("invisible");
         });
 
         // Select all duelists
