@@ -12,7 +12,7 @@ const $agentsList = document.querySelector(".agents-list");
 fetch("https://valorant-api.com/v1/agents")
   .then((response) => response.json())
   .then((data) => {
-    console.log(data);
+    // console.log(data);
 
     // Loop create agent cards
     data.data.forEach((agent) => {
