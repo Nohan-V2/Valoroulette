@@ -122,6 +122,7 @@ main {
   padding: 1.2rem 4rem;
   text-transform: uppercase;
   cursor: pointer;
+  border: 2px solid var(--color-bg-main);
   transition: all 0.3s ease;
 
   &:hover {
@@ -150,6 +151,7 @@ main {
   background-color: var(--color-bg-main);
   padding: 10px;
   cursor: pointer;
+  border: 2px solid var(--color-bg-main);
   transition: all 0.3s ease;
 
   &:hover {

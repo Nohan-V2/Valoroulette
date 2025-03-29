@@ -7,13 +7,16 @@
     <!-- SEO Meta Tags -->
     <meta
       name="description"
-      content="Valoroulette - Générez un agent Valorant aléatoire en fonction de votre sélection. Outil pratique pour les joueurs souhaitant de la variété !"
+      content="Valoroulette - Generate a random Valorant agent based on your selection. Practical tool for players looking for variety!"
     />
     <meta
       name="keywords"
-      content="Valorant, Agent Roulette, Valoroulette, Random Agent, Jeu FPS"
+      content="Valorant, Agent Roulette, Valoroulette, Random Agent, FPS Game"
     />
     <meta name="robots" content="index, follow" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://valoroulette.onrender.com" />
 
     <!-- Google Search Console Verification -->
     <meta
@@ -24,17 +27,17 @@
     <!-- Open Graph (Facebook, LinkedIn) -->
     <meta
       property="og:title"
-      content="Valoroulette - Choisissez un agent aléatoire sur Valorant"
+      content="Valoroulette - Choose a random agent in Valorant"
     />
     <meta
       property="og:description"
-      content="Un outil qui vous permet de sélectionner des agents Valorant et d'en obtenir un aléatoirement pour plus de fun !"
+      content="A tool that allows you to select Valorant agents and get one randomly for more fun!"
     />
     <meta
       property="og:image"
-      content="https://www.ton-site.com/assets/img/preview.jpg"
+      content="https://valoroulette.onrender.com/assets/img/logo.png"
     />
-    <meta property="og:url" content="https://www.ton-site.com" />
+    <meta property="og:url" content="https://valoroulette.onrender.com" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Valoroulette" />
 
@@ -42,18 +45,18 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
-      content="Valoroulette - Choisissez un agent aléatoire sur Valorant"
+      content="Valoroulette - Choose a random agent in Valorant"
     />
     <meta
       name="twitter:description"
-      content="Sélectionnez les agents que vous voulez jouer et obtenez-en un aléatoirement !"
+      content="Select the agents you want to play and get one randomly!"
     />
     <meta
       name="twitter:image"
-      content="https://www.ton-site.com/assets/img/preview.jpg"
+      content="https://valoroulette.onrender.com/assets/img/logo.png"
     />
 
-    <title>Valoroulette - Agent aléatoire pour Valorant</title>
+    <title>Valoroulette - Random agent for Valorant</title>
     <link rel="icon" href="./assets/img/favicon.png" />
     <link rel="stylesheet" href="./css/normalize.css" />
     <link rel="stylesheet" href="./css/reset.css" />
@@ -66,58 +69,86 @@
       autoplay
       muted
       src="./assets/video/valo-bg.mp4"
+      aria-hidden="true"
     ></video>
 
-    <p class="message-all-agents-locked hidden">
-      Tous les agents sont verrouillés. Veuillez déverrouiller au moins un
-      agent.
+    <p
+      class="message-all-agents-locked hidden"
+      role="alert"
+      aria-live="assertive"
+    >
+      All agents are locked. Please unlock at least one agent.
     </p>
 
-    <main>
+    <main id="main-content">
       <img
         src="./assets/img/logo.png"
-        alt="Logo Valoroulette - Outil de sélection d'agent Valorant"
+        alt="Valoroulette Logo - Valorant agent selection tool"
         class="logo"
       />
 
       <h1>Valoroulette</h1>
 
-      <ul class="btn-wrapper">
-        <li class="actions-buttons btn-select-all">Select All</li>
-        <li class="actions-buttons btn-roll">Roll</li>
-        <li class="actions-buttons btn-deselect-all">Deselect All</li>
-      </ul>
+      <div class="btn-wrapper" role="toolbar" aria-label="Selection options">
+        <button type="button" class="actions-buttons btn-select-all">
+          Select All
+        </button>
+        <button type="button" class="actions-buttons btn-roll">Roll</button>
+        <button type="button" class="actions-buttons btn-deselect-all">
+          Deselect All
+        </button>
+      </div>
 
-      <ul class="roles-wrapper">
-        <li class="btn-role duelist">
+      <div class="roles-wrapper" role="group" aria-label="Filter by role">
+        <button
+          type="button"
+          class="btn-role duelist"
+          aria-label="Filter by Duelist"
+        >
           <img
             src="./assets/img/duelist.png"
-            alt="Duelist - Rôle dans Valorant"
+            alt="Duelist - Role in Valorant"
           />
-        </li>
-        <li class="btn-role initiator">
+        </button>
+        <button
+          type="button"
+          class="btn-role initiator"
+          aria-label="Filter by Initiator"
+        >
           <img
             src="./assets/img/initiator.png"
-            alt="Initiator - Rôle dans Valorant"
+            alt="Initiator - Role in Valorant"
           />
-        </li>
-        <li class="btn-role controller">
+        </button>
+        <button
+          type="button"
+          class="btn-role controller"
+          aria-label="Filter by Controller"
+        >
           <img
             src="./assets/img/controller.png"
-            alt="Controller - Rôle dans Valorant"
+            alt="Controller - Role in Valorant"
           />
-        </li>
-        <li class="btn-role sentinel">
+        </button>
+        <button
+          type="button"
+          class="btn-role sentinel"
+          aria-label="Filter by Sentinel"
+        >
           <img
             src="./assets/img/sentinel.png"
-            alt="Sentinel - Rôle dans Valorant"
+            alt="Sentinel - Role in Valorant"
           />
-        </li>
-      </ul>
+        </button>
+      </div>
 
-      <h2 class="name-person-selected invisible">Null</h2>
+      <h2 class="name-person-selected invisible" aria-live="polite">Null</h2>
 
-      <ul class="agents-list"></ul>
+      <ul
+        class="agents-list"
+        role="listbox"
+        aria-label="List of Valorant agents"
+      ></ul>
     </main>
 
     <script src="./js/app.js"></script>
