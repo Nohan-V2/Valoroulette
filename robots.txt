@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://valoroulette.onrender.com/sitemap.xml
