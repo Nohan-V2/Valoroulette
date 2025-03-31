@@ -91,10 +91,12 @@ const selectRandomAgent = () => {
   $namePersonSelected.classList.remove("invisible");
 };
 
-// Charger les données des agents
-fetch("https://valorant-api.com/v1/agents")
-  .then((response) => response.json())
-  .then((data) => {
+// Charger les données des agents avec une fonction asynchrone
+async function loadAgents() {
+  try {
+    const response = await fetch("https://valorant-api.com/v1/agents");
+    const data = await response.json();
+
     // Créer les cartes d'agents
     data.data.forEach((agent) => {
       if (agent.isPlayableCharacter) {
@@ -165,5 +167,10 @@ fetch("https://valorant-api.com/v1/agents")
 
     // Vérifier l'état initial
     checkAllAgentsLocked();
-  })
-  .catch((error) => console.error("Erreur:", error));
+  } catch (error) {
+    console.error("Erreur:", error);
+  }
+}
+
+// Exécuter la fonction de chargement
+loadAgents();
