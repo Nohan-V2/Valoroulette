@@ -1,10 +1,9 @@
-<!DOCTYPE html>
+< !DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- SEO Meta Tags -->
+    < !-- SEO Meta Tags -->
     <meta
       name="description"
       content="Valoroulette - Generate a random Valorant agent based on your selection. Practical tool for players looking for variety!"
@@ -14,17 +13,14 @@
       content="Valorant, Agent Roulette, Valoroulette, Random Agent, FPS Game"
     />
     <meta name="robots" content="index, follow" />
-
-    <!-- Canonical URL -->
+    < !-- Canonical URL -->
     <link rel="canonical" href="https://valoroulette.onrender.com" />
-
-    <!-- Google Search Console Verification -->
+    < !-- Google Search Console Verification -->
     <meta
       name="google-site-verification"
       content="PfcCLImS7s7TpHUxdNQHIea804BS_px0nfOfBcasyRM"
     />
-
-    <!-- Open Graph (Facebook, LinkedIn) -->
+    < !-- Open Graph (Facebook, LinkedIn) -->
     <meta
       property="og:title"
       content="Valoroulette - Choose a random agent in Valorant"
@@ -40,8 +36,7 @@
     <meta property="og:url" content="https://valoroulette.onrender.com" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Valoroulette" />
-
-    <!-- Twitter Card -->
+    < !-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
@@ -55,12 +50,9 @@
       name="twitter:image"
       content="https://valoroulette.onrender.com/assets/img/preview.png"
     />
-
     <title>Valoroulette - Random agent for Valorant</title>
     <link rel="icon" href="./assets/img/favicon.png" />
-    <link rel="stylesheet" href="./css/normalize.css" />
-    <link rel="stylesheet" href="./css/reset.css" />
-    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/main.min.css" />
   </head>
   <body>
     <video
@@ -71,7 +63,6 @@
       src="./assets/video/valo-bg.mp4"
       aria-hidden="true"
     ></video>
-
     <p
       class="message-all-agents-locked hidden"
       role="alert"
@@ -79,26 +70,21 @@
     >
       All agents are locked. Please unlock at least one agent.
     </p>
-
     <main id="main-content">
       <img
         src="./assets/img/logo.png"
         alt="Valoroulette Logo - Valorant agent selection tool"
         class="logo"
       />
-
       <h1>Valoroulette</h1>
-
       <div class="btn-wrapper" role="toolbar" aria-label="Selection options">
         <button type="button" class="actions-buttons btn-select-all">
-          Select All
-        </button>
-        <button type="button" class="actions-buttons btn-roll">Roll</button>
-        <button type="button" class="actions-buttons btn-deselect-all">
+          Select All</button
+        ><button type="button" class="actions-buttons btn-roll">Roll</button
+        ><button type="button" class="actions-buttons btn-deselect-all">
           Deselect All
         </button>
       </div>
-
       <div class="roles-wrapper" role="group" aria-label="Filter by role">
         <button
           type="button"
@@ -108,9 +94,8 @@
           <img
             src="./assets/img/duelist.png"
             alt="Duelist - Role in Valorant"
-          />
-        </button>
-        <button
+          /></button
+        ><button
           type="button"
           class="btn-role initiator"
           aria-label="Filter by Initiator"
@@ -118,9 +103,8 @@
           <img
             src="./assets/img/initiator.png"
             alt="Initiator - Role in Valorant"
-          />
-        </button>
-        <button
+          /></button
+        ><button
           type="button"
           class="btn-role controller"
           aria-label="Filter by Controller"
@@ -128,9 +112,8 @@
           <img
             src="./assets/img/controller.png"
             alt="Controller - Role in Valorant"
-          />
-        </button>
-        <button
+          /></button
+        ><button
           type="button"
           class="btn-role sentinel"
           aria-label="Filter by Sentinel"
@@ -141,16 +124,13 @@
           />
         </button>
       </div>
-
       <h2 class="name-person-selected invisible" aria-live="polite">Null</h2>
-
       <ul
         class="agents-list"
         role="listbox"
         aria-label="List of Valorant agents"
       ></ul>
     </main>
-
-    <script src="./js/app.js"></script>
+    <script src="./js/app.min.js"></script>
   </body>
 </html>
