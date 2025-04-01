@@ -3,19 +3,6 @@
     <url>
         <loc>https://valoroulette.onrender.com/</loc>
         <lastmod>2024-03-29</lastmod>
-        <changefreq>daily</changefreq>
         <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://valoroulette.onrender.com/about</loc>
-        <lastmod>2024-03-29</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.5</priority>
-    </url>
-    <url>
-        <loc>https://valoroulette.onrender.com/contact</loc>
-        <lastmod>2024-03-29</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.5</priority>
     </url>
 </urlset>

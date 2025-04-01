@@ -1,4 +1,5 @@
 User-agent: *
+Disallow: /private/
 Allow: /
 
 Sitemap: https://valoroulette.onrender.com/sitemap.xml
