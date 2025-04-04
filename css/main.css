@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
-
 * {
   margin: 0;
   padding: 0;
@@ -198,13 +196,13 @@ main {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 40px;
-  height: 40px;
+  width: 24px;
+  height: 24px;
   display: none;
 }
 
-.agent-card.locked .lock-icon {
-  display: block;
+.agent-img.locked + .lock-icon {
+  display: block !important;
 }
 
 @media only screen and (max-width: 992px) {

@@ -19,19 +19,31 @@ const $messageAllAgentsLocked = document.querySelector(
 let lastSelectedAgentName = null;
 let agentCards = [];
 
+// Fonction pour réinitialiser les classes .selected et le nom sélectionné
+const resetSelected = () => {
+  document.querySelectorAll(".agent-card").forEach((agentCard) => {
+    agentCard.classList.remove("selected");
+  });
+  $namePersonSelected.textContent = "Aucun"; // Réinitialise le nom affiché
+  $namePersonSelected.classList.add("invisible"); // Cache le nom
+};
+
 // Fonction pour réinitialiser la sélection
 const resetSelection = () => {
-  document.querySelectorAll(".agent-card").forEach((agent) => {
-    agent.classList.remove("selected", "not-selected");
+  document.querySelectorAll(".agent-card").forEach((agentCard) => {
+    const $agentImg = agentCard.querySelector(".agent-img");
+    const $lockIcon = agentCard.querySelector(".lock-icon");
+
+    $agentImg.classList.remove("locked", "not-selected");
+    $lockIcon.style.display = "none"; // Masque l'icône de verrouillage
   });
-  $namePersonSelected.textContent = "Aucun";
-  $namePersonSelected.classList.add("invisible");
+  resetSelected(); // Réinitialise les .selected et le nom
   lastSelectedAgentName = null;
 };
 
 // Fonction pour vérifier si tous les agents sont verrouillés
 const checkAllAgentsLocked = () => {
-  const allAgents = document.querySelectorAll(".agent-card");
+  const allAgents = document.querySelectorAll(".agent-img");
   const allLocked = Array.from(allAgents).every((agent) =>
     agent.classList.contains("locked")
   );
@@ -39,20 +51,32 @@ const checkAllAgentsLocked = () => {
   $messageAllAgentsLocked.classList.toggle("hidden", !allLocked);
 };
 
-// Fonction pour filtrer les agents par rôle
-const filterAgentsByRole = (roleName) => {
-  resetSelection();
+// Fonction pour gérer le filtrage par rôle
+const handleRoleFilter = (roleName) => {
+  resetSelected(); // Retire les .selected et réinitialise le nom
+
   agentCards.forEach((card) => {
-    const isMatchingRole = card.role === roleName;
-    card.element.classList.toggle("locked", !isMatchingRole);
+    const $agentImg = card.element.querySelector(".agent-img");
+    const $lockIcon = card.element.querySelector(".lock-icon");
+
+    if (card.role === roleName) {
+      // Si l'agent appartient au rôle sélectionné, déverrouille-le
+      $agentImg.classList.remove("locked", "not-selected");
+      $lockIcon.style.display = "none"; // Masque l'icône de verrouillage
+    } else {
+      // Sinon, verrouille l'agent
+      $agentImg.classList.add("locked");
+      $lockIcon.style.display = "block"; // Affiche l'icône de verrouillage
+    }
   });
-  checkAllAgentsLocked();
+
+  checkAllAgentsLocked(); // Vérifie si tous les agents sont verrouillés
 };
 
 // Fonction pour sélectionner un agent aléatoire
 const selectRandomAgent = () => {
   // Récupérer tous les agents non verrouillés
-  const unlockedAgents = document.querySelectorAll(".agent-card:not(.locked)");
+  const unlockedAgents = document.querySelectorAll(".agent-card .agent-img:not(.locked)");
 
   // Convertir en tableau pour pouvoir filtrer
   let availableAgents = Array.from(unlockedAgents);
@@ -60,7 +84,7 @@ const selectRandomAgent = () => {
   // Filtrer le dernier agent sélectionné s'il y a plus d'un agent déverrouillé
   if (lastSelectedAgentName && availableAgents.length > 1) {
     availableAgents = availableAgents.filter(
-      (agent) => agent.querySelector(".agent-img").alt !== lastSelectedAgentName
+      (agentImg) => agentImg.alt !== lastSelectedAgentName
     );
   }
 
@@ -72,19 +96,21 @@ const selectRandomAgent = () => {
 
   // Sélectionner l'agent aléatoire
   const randomIndex = Math.floor(Math.random() * availableAgents.length);
-  const selectedAgent = availableAgents[randomIndex];
+  const selectedAgentImg = availableAgents[randomIndex];
+  const selectedAgentCard = selectedAgentImg.closest(".agent-card");
 
   // Stocker le nom de l'agent sélectionné pour le prochain tirage
-  lastSelectedAgentName = selectedAgent.querySelector(".agent-img").alt;
+  lastSelectedAgentName = selectedAgentImg.alt;
 
   // Mettre à jour les classes CSS
-  document.querySelectorAll(".agent-card").forEach((agent) => {
-    agent.classList.add("not-selected");
-    agent.classList.remove("selected");
+  document.querySelectorAll(".agent-card").forEach((agentCard) => {
+    const $agentImg = agentCard.querySelector(".agent-img");
+    $agentImg.classList.add("not-selected"); // Applique .not-selected à l'image
+    agentCard.classList.remove("selected"); // Retire .selected de la carte
   });
 
-  selectedAgent.classList.remove("not-selected");
-  selectedAgent.classList.add("selected");
+  selectedAgentImg.classList.remove("not-selected"); // Retire .not-selected de l'image
+  selectedAgentCard.classList.add("selected"); // Applique .selected à la carte
 
   // Afficher le nom de l'agent sélectionné
   $namePersonSelected.textContent = lastSelectedAgentName;
@@ -129,8 +155,10 @@ async function loadAgents() {
 
         // Ajouter l'événement de verrouillage/déverrouillage
         $agentCard.addEventListener("click", () => {
-          resetSelection();
-          $agentCard.classList.toggle("locked");
+          $agentImg.classList.toggle("locked"); // Toggle uniquement sur l'image de la carte cliquée
+          $lockIcon.style.display = $agentImg.classList.contains("locked")
+            ? "block"
+            : "none"; // Affiche ou masque l'icône de verrouillage
           checkAllAgentsLocked();
         });
       }
@@ -138,32 +166,48 @@ async function loadAgents() {
 
     // Ajouter les événements aux boutons
     $btnSelectAll.addEventListener("click", () => {
-      resetSelection();
-      agentCards.forEach((card) => card.element.classList.remove("locked"));
+      resetSelected(); // Retire les .selected et réinitialise le nom
+      agentCards.forEach((card) => {
+        const $agentImg = card.element.querySelector(".agent-img");
+        const $lockIcon = card.element.querySelector(".lock-icon");
+
+        $agentImg.classList.remove("locked", "not-selected"); // Retire les classes
+        $lockIcon.style.display = "none"; // Masque l'icône de verrouillage
+      });
       checkAllAgentsLocked();
     });
 
     $btnDeselectAll.addEventListener("click", () => {
-      resetSelection();
-      agentCards.forEach((card) => card.element.classList.add("locked"));
+      resetSelected(); // Retire les .selected et réinitialise le nom
+      agentCards.forEach((card) => {
+        const $agentImg = card.element.querySelector(".agent-img");
+        const $lockIcon = card.element.querySelector(".lock-icon");
+
+        $agentImg.classList.add("locked"); // Ajoute la classe .locked
+        $agentImg.classList.remove("not-selected"); // Retire la classe .not-selected
+        $lockIcon.style.display = "block"; // Affiche l'icône de verrouillage
+      });
       checkAllAgentsLocked();
     });
 
     $btnRoll.addEventListener("click", selectRandomAgent);
 
-    // Ajouter les événements aux boutons de rôle
-    $roleButtons.duelist.addEventListener("click", () =>
-      filterAgentsByRole("Duelist")
-    );
-    $roleButtons.initiator.addEventListener("click", () =>
-      filterAgentsByRole("Initiator")
-    );
-    $roleButtons.controller.addEventListener("click", () =>
-      filterAgentsByRole("Controller")
-    );
-    $roleButtons.sentinel.addEventListener("click", () =>
-      filterAgentsByRole("Sentinel")
-    );
+    // Gestion des boutons de rôle
+    $roleButtons.duelist.addEventListener("click", () => {
+      handleRoleFilter("Duelist");
+    });
+
+    $roleButtons.initiator.addEventListener("click", () => {
+      handleRoleFilter("Initiator");
+    });
+
+    $roleButtons.controller.addEventListener("click", () => {
+      handleRoleFilter("Controller");
+    });
+
+    $roleButtons.sentinel.addEventListener("click", () => {
+      handleRoleFilter("Sentinel");
+    });
 
     // Vérifier l'état initial
     checkAllAgentsLocked();
