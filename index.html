@@ -61,8 +61,19 @@
       rel="stylesheet"
     />
     <link rel="icon" href="./assets/img/favicon.png" />
-    <link rel="stylesheet" href="./css/main.min.css">
+    <link rel="stylesheet" href="./css/main.min.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Valoroulette",
+        "url": "https://valoroulette.onrender.com",
+        "description": "Outil pour générer un agent aléatoire sur Valorant selon votre sélection.",
+        "inLanguage": "en"
+      }
+    </script>
   </head>
+
   <body>
     <video
       playsinline
@@ -72,6 +83,7 @@
       src="./assets/video/valo-bg.mp4"
       aria-hidden="true"
     ></video>
+
     <p
       class="message-all-agents-locked hidden"
       role="alert"
@@ -85,6 +97,7 @@
         alt="Valoroulette Logo - A stylized Valorant-themed randomizer tool for agent selection"
         class="logo"
       />
+
       <h1>Valoroulette</h1>
       <div class="btn-wrapper" role="toolbar" aria-label="Selection options">
         <button type="button" class="actions-buttons btn-select-all">

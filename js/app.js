@@ -2,12 +2,7 @@ const $btnSelectAll = document.querySelector(".btn-select-all");
 const $btnRoll = document.querySelector(".btn-roll");
 const $btnDeselectAll = document.querySelector(".btn-deselect-all");
 
-const $roleButtons = {
-  duelist: document.querySelector(".duelist"),
-  initiator: document.querySelector(".initiator"),
-  controller: document.querySelector(".controller"),
-  sentinel: document.querySelector(".sentinel"),
-};
+const $roleButtons = document.querySelectorAll(".btn-role");
 
 const $namePersonSelected = document.querySelector(".name-person-selected");
 const $agentsList = document.querySelector(".agents-list");
@@ -18,6 +13,9 @@ const $messageAllAgentsLocked = document.querySelector(
 // Variable pour suivre le dernier agent sélectionné
 let lastSelectedAgentName = null;
 let agentCards = [];
+
+// Liste des rôles actifs
+let activeRoles = new Set();
 
 // Fonction pour réinitialiser les classes .selected et le nom sélectionné
 const resetSelected = () => {
@@ -73,10 +71,40 @@ const handleRoleFilter = (roleName) => {
   checkAllAgentsLocked(); // Vérifie si tous les agents sont verrouillés
 };
 
+// Fonction pour gérer le filtrage par rôles combinés
+const handleRoleToggle = (roleName) => {
+  if (activeRoles.has(roleName)) {
+    activeRoles.delete(roleName); // Désactiver le rôle s'il est déjà actif
+  } else {
+    activeRoles.add(roleName); // Activer le rôle s'il est inactif
+  }
+
+  // Mettre à jour les agents en fonction des rôles actifs
+  agentCards.forEach((card) => {
+    const $agentImg = card.element.querySelector(".agent-img");
+    const $lockIcon = card.element.querySelector(".lock-icon");
+
+    if (activeRoles.size === 0 || activeRoles.has(card.role)) {
+      // Si aucun rôle actif ou si l'agent appartient à un rôle actif
+      $agentImg.classList.remove("locked", "not-selected");
+      card.element.classList.remove("selected"); // Retire .selected de la carte
+      $lockIcon.style.display = "none";
+    } else {
+      // Sinon, verrouiller l'agent
+      $agentImg.classList.add("locked");
+      $lockIcon.style.display = "block";
+    }
+  });
+
+  checkAllAgentsLocked(); // Vérifie si tous les agents sont verrouillés
+};
+
 // Fonction pour sélectionner un agent aléatoire
 const selectRandomAgent = () => {
   // Récupérer tous les agents non verrouillés
-  const unlockedAgents = document.querySelectorAll(".agent-card .agent-img:not(.locked)");
+  const unlockedAgents = document.querySelectorAll(
+    ".agent-card .agent-img:not(.locked)"
+  );
 
   // Convertir en tableau pour pouvoir filtrer
   let availableAgents = Array.from(unlockedAgents);
@@ -167,6 +195,7 @@ async function loadAgents() {
     // Ajouter les événements aux boutons
     $btnSelectAll.addEventListener("click", () => {
       resetSelected(); // Retire les .selected et réinitialise le nom
+      resetRoleButtons(); // Réinitialise les rôles actifs et les boutons de rôle
       agentCards.forEach((card) => {
         const $agentImg = card.element.querySelector(".agent-img");
         const $lockIcon = card.element.querySelector(".lock-icon");
@@ -179,6 +208,7 @@ async function loadAgents() {
 
     $btnDeselectAll.addEventListener("click", () => {
       resetSelected(); // Retire les .selected et réinitialise le nom
+      resetRoleButtons(); // Réinitialise les rôles actifs et les boutons de rôle
       agentCards.forEach((card) => {
         const $agentImg = card.element.querySelector(".agent-img");
         const $lockIcon = card.element.querySelector(".lock-icon");
@@ -192,21 +222,13 @@ async function loadAgents() {
 
     $btnRoll.addEventListener("click", selectRandomAgent);
 
-    // Gestion des boutons de rôle
-    $roleButtons.duelist.addEventListener("click", () => {
-      handleRoleFilter("Duelist");
-    });
-
-    $roleButtons.initiator.addEventListener("click", () => {
-      handleRoleFilter("Initiator");
-    });
-
-    $roleButtons.controller.addEventListener("click", () => {
-      handleRoleFilter("Controller");
-    });
-
-    $roleButtons.sentinel.addEventListener("click", () => {
-      handleRoleFilter("Sentinel");
+    // Gestion des boutons de rôle (mise à jour pour le mode toggle)
+    $roleButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const roleName = button.classList[1]; // Récupère le rôle à partir de la classe
+        handleRoleToggle(roleName.charAt(0).toUpperCase() + roleName.slice(1));
+        button.classList.toggle("selected"); // Ajoute ou retire une classe visuelle pour indiquer l'état actif
+      });
     });
 
     // Vérifier l'état initial
@@ -215,6 +237,14 @@ async function loadAgents() {
     console.error("Erreur:", error);
   }
 }
+
+// Fonction pour réinitialiser les rôles actifs et les boutons de rôle
+const resetRoleButtons = () => {
+  activeRoles.clear(); // Vide la liste des rôles actifs
+  $roleButtons.forEach((button) => {
+    button.classList.remove("selected"); // Retire la classe .selected des boutons
+  });
+};
 
 // Exécuter la fonction de chargement
 loadAgents();

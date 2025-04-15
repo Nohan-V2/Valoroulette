@@ -157,6 +157,11 @@ main {
   }
 }
 
+.btn-role.selected {
+  outline: 2px solid var(--yellow);
+  opacity: 1;
+}
+
 .agents-list {
   display: flex;
   flex-wrap: wrap;
@@ -201,7 +206,7 @@ main {
   display: none;
 }
 
-.agent-img.locked + .lock-icon {
+.agent-img.locked+.lock-icon {
   display: block !important;
 }
 
