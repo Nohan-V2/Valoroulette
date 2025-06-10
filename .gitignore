@@ -1,0 +1,68 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.env
+.env
+.env.*
+
+# VSCode
+.vscode/
+
+# Mac / Linux / Windows
+.DS_Store
+Thumbs.db
+ehthumbs.db
+*.swp
+*.swo
+
+# Logs
+logs/
+*.log
+
+# Build / Dist
+dist/
+build/
+out/
+
+# Dependency directories
+bower_components/
+jspm_packages/
+
+# IDEs / Editors
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Test coverage
+coverage/
+
+# System files
+*.tmp
+*.bak
+
+# Optional: environment files
+.env.local
+.env.production
+.env.development
+
+# Optional: database
+*.sqlite
+*.sqlite3
+*.db
+
+# Optional: compiled source
+*.class
+*.o
+*.so
+
+# Optional: secrets
+secrets.json
+credentials.json
