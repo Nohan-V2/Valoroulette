@@ -165,11 +165,15 @@ async function loadAgents() {
         $agentImg.src = agent.displayIcon;
         $agentCard.appendChild($agentImg);
 
+        const $lockIconWrapper = document.createElement("div");
+        $lockIconWrapper.classList.add("lock-icon-wrapper");
+        $agentCard.appendChild($lockIconWrapper);
+
         // Ajouter l'icône de verrouillage
         const $lockIcon = document.createElement("img");
         $lockIcon.classList.add("lock-icon");
         $lockIcon.src = "assets/img/lock.svg";
-        $agentCard.appendChild($lockIcon);
+        $lockIconWrapper.appendChild($lockIcon);
 
         // Ajouter la carte à la liste
         $agentsList.appendChild($agentCard);
