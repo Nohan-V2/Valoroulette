@@ -1,2 +1,38 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# Set default text encoding to UTF-8
+* text=auto eol=lf
+
+# Treat certain file types as binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.mp4 binary
+*.mp3 binary
+*.ttf binary
+*.woff binary
+*.woff2 binary
+
+# Force line endings on shell scripts (Unix style)
+*.sh text eol=lf
+
+# Force line endings on batch files (Windows style)
+*.bat text eol=crlf
+
+# Mark JavaScript, HTML, CSS, etc. as text
+*.js text
+*.ts text
+*.jsx text
+*.tsx text
+*.html text
+*.css text
+*.scss text
+*.json text
+*.md text
+
+# Normalize Python files
+*.py text
+
+# Treat Lock files as text
+package-lock.json text
+yarn.lock text
