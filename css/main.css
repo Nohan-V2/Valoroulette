@@ -72,7 +72,7 @@ h1 {
 
 body {
   padding: 1.5rem 0;
-  background-color: var(--black);
+  background: transparent;
   min-height: 100vh;
 }
 
