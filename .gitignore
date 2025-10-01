@@ -32,6 +32,11 @@ dist/
 build/
 out/
 
+# Next.js
+.next/
+next-env.d.ts
+.vercel
+
 # Dependency directories
 bower_components/
 jspm_packages/
