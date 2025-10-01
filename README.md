@@ -114,6 +114,7 @@ No environment variables required. The Valorant API is public and doesn't need a
 ## 🤝 Contributing
 
 Contributions are welcome! Feel free to:
+
 - Report bugs
 - Suggest new features
 - Submit pull requests
@@ -125,8 +126,9 @@ MIT License - feel free to use this project for your own purposes.
 ## 👤 Author
 
 **Nohan-V2**
+
 - GitHub: [@Nohan-V2](https://github.com/Nohan-V2)
-- Website: [valoroulette-five.vercel.app](https://valoroulette-five.vercel.app)
+- Website: [valoroulette-six.vercel.app](https://valoroulette-six.vercel.app)
 
 ## 🙏 Acknowledgments
 
