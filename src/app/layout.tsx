@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import { Anton } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import './globals.css'
 
 const anton = Anton({ 
@@ -74,7 +76,11 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={anton.className}>{children}</body>
+      <body className={anton.className}>
+        {children}
+        <Analytics />
+        <SpeedInsights />
+      </body>
     </html>
   )
 }

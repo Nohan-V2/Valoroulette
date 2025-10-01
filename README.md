@@ -1,72 +1,67 @@
-# 🎲 Valoroulette
+# 🎮 Valoroulette
 
-Un site de roulette inspiré de Valorant, conçu pour offrir une expérience fun et interactive entre potes ou pour décider de ton setup aléatoire en jeu !
+A modern web app to randomly select Valorant agents for your next match. Built with Next.js 14, TypeScript, and Tailwind CSS.
 
----
+![Valoroulette Preview](public/assets/img/preview.png)
 
-## ✨ Fonctionnalités
-
-- 🎯 **Roulette de rôles** : Choisis aléatoirement ton rôle (Duelist, Sentinel, etc.)
-- 🔫 **Roulette d'agents** : Tire un agent au hasard pour spice up tes games
-- 🎮 **UI moderne & responsive** : Adapté PC et mobile, avec une interface clean
-- ⚡ **Performance optimisée** : Chargement rapide avec Next.js et optimisation d'images
-- ♿ **Accessibilité** : Conforme aux standards WCAG avec ARIA labels
-- 🔍 **SEO optimisé** : Métadonnées complètes et structured data
-
----
-
-## 📸 Aperçu
-
-![Valoroulette Preview](https://valoroulette-five.vercel.app/assets/img/preview.png)
-
----
-
-## 🛠️ Technologies utilisées
-
-- **React 18** - Framework UI moderne
-- **Next.js 14** - Framework React avec App Router
-- **TypeScript** - Typage statique pour plus de robustesse
-- **TailwindCSS** - Framework CSS utility-first
-- **Valorant API** - Données d'agents en temps réel
-- Hébergé sur **[Vercel](https://vercel.com/)**
-
----
-
-## 🔧 Installation & Développement
-
-### Prérequis
-- Node.js 18+ et npm/yarn
-
-### Installation
+## 🚀 Quick Start
 
 ```bash
-# Installer les dépendances
+# Install dependencies
 npm install
 
-# Lancer le serveur de développement
+# Run development server
 npm run dev
 
-# Builder pour la production
+# Build for production
 npm run build
 
-# Lancer en production
+# Start production server
 npm start
 ```
 
-Le site sera accessible sur [http://localhost:3000](http://localhost:3000)
+Visit `http://localhost:3000`
 
----
+## ✨ Features
 
-## 📂 Structure du projet
+- 🎯 **Random Agent Selection** - Roll a random agent from your selected pool
+- 🔒 **Lock/Unlock System** - Click agents to lock/unlock them individually
+- 🎭 **Role Filtering** - Filter by role (Duelist, Initiator, Controller, Sentinel)
+- 📱 **Fully Responsive** - Optimized for mobile, tablet, and desktop
+- ⚡ **Fast Performance** - Optimized loading with lazy images and conditional video
+- ♿ **Accessible** - WCAG compliant with ARIA labels and keyboard navigation
+- 📊 **Analytics** - Vercel Analytics & Speed Insights integrated
+
+## 🎮 How to Use
+
+1. **Select Agents**: All agents are unlocked by default
+2. **Filter by Role**: Click role icons to filter agents (others become locked)
+3. **Lock Individuals**: Click on any agent to toggle lock/unlock
+4. **Roll**: Click the "Roll" button to randomly select an unlocked agent
+5. **Quick Actions**:
+   - **Select All**: Unlock all agents
+   - **Deselect All**: Lock all agents
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Next.js 14](https://nextjs.org/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Font**: [Anton](https://fonts.google.com/specimen/Anton) (Google Fonts)
+- **API**: [Valorant API](https://valorant-api.com/)
+- **Analytics**: Vercel Analytics & Speed Insights
+- **Deployment**: [Vercel](https://vercel.com/)
+
+## 📦 Project Structure
 
 ```
 valoroulette/
 ├── src/
-│   ├── app/
-│   │   ├── layout.tsx       # Layout principal avec SEO
-│   │   ├── page.tsx         # Page d'accueil
-│   │   └── globals.css      # Styles globaux
-│   ├── components/
+│   ├── app/              # Next.js app directory
+│   │   ├── layout.tsx    # Root layout
+│   │   ├── page.tsx      # Home page
+│   │   └── globals.css   # Global styles
+│   ├── components/       # React components
 │   │   ├── ActionButtons.tsx
 │   │   ├── AgentCard.tsx
 │   │   ├── AgentList.tsx
@@ -76,76 +71,71 @@ valoroulette/
 │   │   ├── LoadingSpinner.tsx
 │   │   ├── RoleFilters.tsx
 │   │   └── SelectedAgentName.tsx
-│   ├── hooks/
-│   │   └── useAgents.ts     # Hook personnalisé pour la gestion d'état
-│   └── types/
-│       └── agent.ts         # Types TypeScript
+│   ├── hooks/            # Custom React hooks
+│   │   └── useAgents.ts
+│   └── types/            # TypeScript types
+│       └── agent.ts
 ├── public/
-│   └── assets/              # Images & vidéos
+│   └── assets/           # Images, videos, icons
 ├── package.json
 ├── tsconfig.json
 ├── tailwind.config.ts
 └── next.config.js
 ```
 
----
+## 🚀 Deployment
 
-## ⚡ Optimisations implémentées
+This project is configured for deployment on Vercel:
 
-### Performance
-- ✅ Image optimization avec Next.js Image
-- ✅ Lazy loading des composants
-- ✅ Code splitting automatique
-- ✅ Compression automatique des assets
-- ✅ Caching intelligent
+1. Push your code to GitHub
+2. Import the repository on [Vercel](https://vercel.com/new)
+3. Vercel will auto-detect Next.js and deploy
 
-### SEO
-- ✅ Métadonnées complètes (Open Graph, Twitter Cards)
-- ✅ Structured Data (Schema.org)
-- ✅ Sitemap et robots.txt
-- ✅ Canonical URLs
-- ✅ Google Search Console verification
+## 🌐 Environment
 
-### Accessibilité
-- ✅ ARIA labels sur tous les composants interactifs
-- ✅ Navigation au clavier
-- ✅ Lecteurs d'écran supportés
-- ✅ Contrast ratios respectés
-- ✅ Semantic HTML
+No environment variables required. The Valorant API is public and doesn't need authentication.
 
-### Best Practices
-- ✅ TypeScript pour la sécurité des types
-- ✅ ESLint pour la qualité du code
-- ✅ Hooks React pour la gestion d'état
-- ✅ Responsive design mobile-first
-- ✅ Error boundaries et gestion d'erreurs
+## 📊 Performance
 
----
+- **Lighthouse Score**: 90+ (Mobile & Desktop)
+- **Core Web Vitals**: All metrics in "Good" range
+- **Bundle Size**: Optimized with Next.js automatic code splitting
+- **Images**: Lazy loading and optimized quality
+- **Video**: Conditionally loaded based on connection speed
 
-## 💡 Améliorations futures possibles
+## ♿ Accessibility
 
-- Ajouter une roulette d'**armes**
-- Ajouter des **animations sonores**
-- Ajout d'un mode **"full random challenge"**
-- Générer un **lien de partage du tirage**
-- Mode sombre/clair
-- Sauvegarde des préférences utilisateur (localStorage)
-- Animations de transition plus fluides
-- Support multilingue (i18n)
+- WCAG 2.1 Level AA compliant
+- Keyboard navigation support
+- Screen reader friendly with ARIA labels
+- High contrast colors
+- Touch-friendly on mobile (minimum 44px touch targets)
 
----
+## 🤝 Contributing
 
-## 📜 Licence
+Contributions are welcome! Feel free to:
+- Report bugs
+- Suggest new features
+- Submit pull requests
 
-Projet open source sous licence **MIT**.
+## 📄 License
 
----
+MIT License - feel free to use this project for your own purposes.
 
-## 👨‍💻 Développé par
+## 👤 Author
 
-**[Nohan-V2](https://github.com/Nohan-V2)**
-Dév front & Valorant enjoyer 💥
+**Nohan-V2**
+- GitHub: [@Nohan-V2](https://github.com/Nohan-V2)
+- Website: [valoroulette-five.vercel.app](https://valoroulette-five.vercel.app)
 
----
+## 🙏 Acknowledgments
 
-> *"No need to lock, just spin and go!"*
+- [Valorant API](https://valorant-api.com/) for providing agent data
+- [Riot Games](https://www.riotgames.com/) for Valorant assets
+- [Next.js](https://nextjs.org/) team for the amazing framework
+
+## 📝 Version
+
+**Current Version**: 2.0.3
+
+See [CHANGELOG.md](CHANGELOG.md) for version history.
