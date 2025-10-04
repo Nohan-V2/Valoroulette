@@ -2,4 +2,4 @@ User-agent: *
 Disallow: /private/
 Allow: /
 
-Sitemap: https://valoroulette-five.vercel.app/sitemap.xml
+Sitemap: https://valoroulette-six.vercel.app/sitemap.xml

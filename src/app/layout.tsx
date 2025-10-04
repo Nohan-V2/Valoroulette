@@ -24,13 +24,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://valoroulette-five.vercel.app',
+    url: 'https://valoroulette-six.vercel.app',
     title: 'Valoroulette - Choose a random agent in Valorant',
     description: 'A tool that allows you to select Valorant agents and get one randomly for more fun!',
     siteName: 'Valoroulette',
     images: [
       {
-        url: 'https://valoroulette-five.vercel.app/assets/img/preview.png',
+        url: 'https://valoroulette-six.vercel.app/assets/img/preview.png',
         width: 1200,
         height: 630,
         alt: 'Valoroulette Preview',
@@ -41,11 +41,14 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Valoroulette - Choose a random agent in Valorant',
     description: 'Select the agents you want to play and get one randomly!',
-    images: ['https://valoroulette-five.vercel.app/assets/img/preview.png'],
+    images: ['https://valoroulette-six.vercel.app/assets/img/preview.png'],
   },
-  metadataBase: new URL('https://valoroulette-five.vercel.app'),
+  metadataBase: new URL('https://valoroulette-six.vercel.app'),
   verification: {
     google: 'M5zQJ7L8gvSW9tjfW6-1j3egB0SR9Z31SEDXa0WnZnk',
+    other: {
+      'msvalidate.01': 'ACD16415F6700390D97E638BA176DFCA',
+    },
   },
   other: {
     'theme-color': '#FF4655',
@@ -60,7 +63,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="canonical" href="https://valoroulette-five.vercel.app" />
+        <link rel="canonical" href="https://valoroulette-six.vercel.app" />
         <link rel="icon" href="/assets/img/favicon.png" />
         <script
           type="application/ld+json"
@@ -69,7 +72,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "WebSite",
               "name": "Valoroulette",
-              "url": "https://valoroulette-five.vercel.app",
+              "url": "https://valoroulette-six.vercel.app",
               "description": "Tool to generate a random Valorant agent according to your selection.",
               "inLanguage": "en"
             })

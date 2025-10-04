@@ -3,7 +3,7 @@ import { MetadataRoute } from 'next'
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: 'https://valoroulette-five.vercel.app',
+      url: 'https://valoroulette-six.vercel.app',
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 1,
