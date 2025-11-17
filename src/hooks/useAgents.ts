@@ -1,129 +1,142 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
-import type { Agent, RoleName } from '@/types/agent'
+import { useState, useEffect } from "react";
+import type { Agent, RoleName } from "@/types/agent";
+
+const ALL_ROLE_NAMES: RoleName[] = [
+  "Duelist",
+  "Initiator",
+  "Controller",
+  "Sentinel",
+];
 
 export function useAgents() {
-  const [agents, setAgents] = useState<Agent[]>([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-  const [lockedAgents, setLockedAgents] = useState<Set<string>>(new Set())
-  const [selectedAgent, setSelectedAgent] = useState<Agent | null>(null)
-  const [lastSelectedAgent, setLastSelectedAgent] = useState<string | null>(null)
-  const [activeRoles, setActiveRoles] = useState<Set<RoleName>>(new Set())
+  const [agents, setAgents] = useState<Agent[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [lockedAgents, setLockedAgents] = useState<Set<string>>(new Set());
+  const [selectedAgent, setSelectedAgent] = useState<Agent | null>(null);
+  const [lastSelectedAgent, setLastSelectedAgent] = useState<string | null>(
+    null
+  );
+  const [activeRoles, setActiveRoles] = useState<Set<RoleName>>(
+    new Set(ALL_ROLE_NAMES)
+  );
 
   useEffect(() => {
     async function fetchAgents() {
       try {
-        const response = await fetch('https://valorant-api.com/v1/agents')
+        const response = await fetch("https://valorant-api.com/v1/agents");
         if (!response.ok) {
-          throw new Error('Failed to fetch agents')
+          throw new Error("Failed to fetch agents");
         }
-        const data = await response.json()
+        const data = await response.json();
         const playableAgents = data.data.filter(
           (agent: Agent) => agent.isPlayableCharacter
-        )
-        setAgents(playableAgents)
+        );
+        setAgents(playableAgents);
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Unknown error')
+        setError(err instanceof Error ? err.message : "Unknown error");
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
     }
 
-    fetchAgents()
-  }, [])
+    fetchAgents();
+  }, []);
 
   const toggleLock = (agentId: string) => {
     setLockedAgents((prev) => {
-      const newSet = new Set(prev)
+      const newSet = new Set(prev);
       if (newSet.has(agentId)) {
-        newSet.delete(agentId)
+        newSet.delete(agentId);
       } else {
-        newSet.add(agentId)
+        newSet.add(agentId);
       }
-      return newSet
-    })
-  }
+      return newSet;
+    });
+  };
 
   const selectAll = () => {
-    setLockedAgents(new Set())
-    setActiveRoles(new Set())
-    setSelectedAgent(null)
-  }
+    setLockedAgents(new Set());
+    setActiveRoles(new Set(ALL_ROLE_NAMES));
+    setSelectedAgent(null);
+  };
 
   const deselectAll = () => {
-    setLockedAgents(new Set(agents.map((agent) => agent.uuid)))
-    setActiveRoles(new Set())
-    setSelectedAgent(null)
-  }
+    setLockedAgents(new Set(agents.map((agent) => agent.uuid)));
+    setActiveRoles(new Set());
+    setSelectedAgent(null);
+  };
 
   const toggleRole = (role: RoleName) => {
-    // Réinitialiser la sélection comme dans l'ancienne version
-    setSelectedAgent(null)
-    setLastSelectedAgent(null)
-    
+    setSelectedAgent(null);
+    setLastSelectedAgent(null);
+
     setActiveRoles((prev) => {
-      const newSet = new Set(prev)
+      const newSet = new Set(prev);
       if (newSet.has(role)) {
-        newSet.delete(role)
+        newSet.delete(role);
       } else {
-        newSet.add(role)
+        newSet.add(role);
       }
-      
-      // Verrouiller/déverrouiller les agents selon les rôles actifs
+
       if (newSet.size === 0) {
-        // Si aucun rôle actif, tout déverrouiller
-        setLockedAgents(new Set())
+        setLockedAgents(new Set(agents.map((agent) => agent.uuid)));
       } else {
-        // Verrouiller les agents qui ne correspondent pas aux rôles actifs
         const agentsToLock = agents
-          .filter((agent) => !agent.role || !newSet.has(agent.role.displayName as RoleName))
-          .map((agent) => agent.uuid)
-        setLockedAgents(new Set(agentsToLock))
+          .filter(
+            (agent) =>
+              !agent.role || !newSet.has(agent.role.displayName as RoleName)
+          )
+          .map((agent) => agent.uuid);
+
+        setLockedAgents(new Set(agentsToLock));
       }
-      
-      return newSet
-    })
-  }
+
+      return newSet;
+    });
+  };
 
   const getFilteredAgents = () => {
     // Toujours retourner tous les agents, le verrouillage se fait via lockedAgents
-    return agents
-  }
+    return agents;
+  };
 
   const getUnlockedAgents = () => {
-    const filtered = getFilteredAgents()
-    return filtered.filter((agent) => !lockedAgents.has(agent.uuid))
-  }
+    const filtered = getFilteredAgents();
+    return filtered.filter((agent) => !lockedAgents.has(agent.uuid));
+  };
 
   const rollAgent = () => {
-    let availableAgents = getUnlockedAgents()
+    let availableAgents = getUnlockedAgents();
 
     if (availableAgents.length === 0) {
-      return
+      return;
     }
 
     // Filter out last selected agent if more than one available
     if (lastSelectedAgent && availableAgents.length > 1) {
       availableAgents = availableAgents.filter(
         (agent) => agent.displayName !== lastSelectedAgent
-      )
+      );
     }
 
     if (availableAgents.length === 0) {
-      return
+      return;
     }
 
-    const randomIndex = Math.floor(Math.random() * availableAgents.length)
-    const selected = availableAgents[randomIndex]
-    setSelectedAgent(selected)
-    setLastSelectedAgent(selected.displayName)
-  }
+    const randomIndex = Math.floor(Math.random() * availableAgents.length);
+    const selected = availableAgents[randomIndex];
+    setSelectedAgent(selected);
+    setLastSelectedAgent(selected.displayName);
+  };
 
   const isAllLocked = () => {
-    return agents.length > 0 && agents.every((agent) => lockedAgents.has(agent.uuid))
-  }
+    return (
+      agents.length > 0 && agents.every((agent) => lockedAgents.has(agent.uuid))
+    );
+  };
 
   return {
     agents,
@@ -140,5 +153,5 @@ export function useAgents() {
     getFilteredAgents,
     getUnlockedAgents,
     isAllLocked,
-  }
+  };
 }
